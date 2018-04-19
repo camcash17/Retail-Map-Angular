@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { RetailService } from '../retail.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +10,26 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   selection: any;
+  searchSubject = new Subject();
+  item: any;
 
-  constructor() { }
+  constructor(private retailService: RetailService) { }
 
-  ngOnInit() {
+  onOptionsSelected(event) {
+    this.searchSubject.next(event);
+    this.retailService.saveData(event);
   }
 
-  // onOptionsSelected(event) {
-  //   console.log('selected', event);
-
-  // }
+  ngOnInit() {
+    this.searchSubject.subscribe(results => {
+      this.retailService.createAPIObservable(results)
+      .then(data => {
+        // console.log(data)
+        this.item = data;
+        // .subscribe(response => this.item = response.json())
+        // console.log('brand new', this.item)
+      })
+    })
+  }
 
 }

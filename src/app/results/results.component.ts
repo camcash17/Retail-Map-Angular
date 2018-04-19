@@ -12,27 +12,31 @@ export class ResultsComponent implements OnInit {
   selected: any;
   item: any;
   searchSubject = new Subject();
+  mapData: any;
 
-  constructor(private retailService: RetailService) { }
+  constructor(private retailService: RetailService) { 
+    this.retailService.dataString$.subscribe(
+      data => {
+        if(this.mapData !== data){
+          this.mapData = data;
+          this.getServersData(this.mapData)
+          console.log('my name2', this.mapData)
+        }
+      })
+    }
 
-
-  onOptionsSelected(event) {
-    this.searchSubject.next(event);
-    this.retailService.saveData(event);
+  getServersData(name) {
+    console.log('server data2', name)
+    this.retailService
+    .createAPIObservable(name)
+    .then(data => {
+      console.log('itemzzz', data)
+      this.item = data;
+      // .subscribe(response => this.item = response.json())
+    })
   }
 
   ngOnInit() {
-    this.searchSubject.subscribe(results => {
-      this.retailService.createAPIObservable(results)
-      .then(data => {
-        // console.log(data)
-        this.item = data;
-        // .subscribe(response => this.item = response.json())
-        // console.log('brand new', this.item)
-      })
-      // .subscribe(response => this.selected = response.json());
-      // this.mapComponent.getMap();
-    })
   }
 
 }

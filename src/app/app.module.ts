@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FavoritesComponent } from './favorites/favorites.component';
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RetailService } from './retail.service';
 import { AgmCoreModule } from '@agm/core';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AgmCoreModule } from '@agm/core';
     ResultsComponent,
     HeaderComponent,
     MapComponent,
-    RouteComponent
+    RouteComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,22 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCuX4J4se2kKR-WCCYtrApC-OGIM5XWAo4'
-    })
+    }),
+    RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'about',
+        component: RouteComponent
+      },
+    ])
   ],
   providers: [
     RetailService
