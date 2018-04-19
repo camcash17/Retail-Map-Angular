@@ -1,0 +1,11 @@
+<!-- <p *ngFor="let m of coords" class="{{m.lat}}">{{ m.lat }}</p> -->
+<div id="two">
+  <agm-map [latitude]="40.7078" [longitude]="-74.0100" [zoom]="zoom">
+      <!-- <div *ngFor="let m of coords"> -->
+        <agm-marker *ngFor="let m of coords" [latitude]="m.lat" [longitude]="m.lng">
+            <agm-info-window>{{m.name}}</agm-info-window>
+        </agm-marker>
+      <!-- </div> -->
+      <!-- <agm-marker *ngFor="let m of coords" [latitude]="m[0]" [longitude]="m[1]"></agm-marker> -->
+  </agm-map>
+</div>

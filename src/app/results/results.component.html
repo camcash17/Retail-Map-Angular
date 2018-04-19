@@ -1,0 +1,16 @@
+<div id="one">
+  <h2 className="header" style="margin: 0; padding: '10px'; color: 'white'; fontSize: '33px';">Retail Locations</h2>
+</div>
+<select [(ngModel)]="selection" (ngModelChange)='onOptionsSelected($event)'>
+  <option [value]="0">Select a Retail Type</option>
+  <option [value]="'Casual'">Casual Eating & Takeout</option>
+  <option [value]="'Personal'">Personal and Professional Services</option>
+  <option [value]="'Dining'">Full Service Dining</option>
+  <option [value]="'Shopping'">Shopping</option>
+  <option [value]="'Community'">Community Resources</option>
+  <option [value]="'Nightlife'">Nightlife</option>
+  <option [value]="'Visitor'">Visitor Services</option>
+</select>
+<section *ngIf="selection">
+  <p *ngFor="let r of item">{{r.cnbio_org_name}}<p>
+</section>
