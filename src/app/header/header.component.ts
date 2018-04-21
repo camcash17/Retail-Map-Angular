@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { RetailService } from '../retail.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-header',
@@ -20,16 +21,14 @@ export class HeaderComponent implements OnInit {
     this.retailService.saveData(event);
   }
 
+  viewFavorites() {
+    $('#selectId').val('undefined')
+    // document.getElementById('selectId').value = "undefined";
+    this.searchSubject.next(null);
+    this.retailService.saveData(null);
+  }
+
   ngOnInit() {
-    this.searchSubject.subscribe(results => {
-      this.retailService.createAPIObservable(results)
-      .then(data => {
-        // console.log(data)
-        this.item = data;
-        // .subscribe(response => this.item = response.json())
-        // console.log('brand new', this.item)
-      })
-    })
   }
 
 }

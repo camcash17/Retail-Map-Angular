@@ -15,7 +15,7 @@ export class RetailService {
     private apiUrl = 'api/data';
 
     // Observable string source
-    private dataStringSource = new BehaviorSubject<string>();
+    private dataStringSource = new BehaviorSubject<string>(null);
   
     // Observable string stream
     dataString$ = this.dataStringSource.asObservable();
@@ -24,12 +24,12 @@ export class RetailService {
   
     public saveData(value){
       this.sharingData.data = value;
-      console.log("save data function called " + value + " and " + this.sharingData.data);
+    //   console.log("save data function called " + value + " and " + this.sharingData.data);
       this.dataStringSource.next(this.sharingData.data);
     }
 
     createAPIObservable(results){
-        console.log("service running", results);
+        // console.log("service running", results);
         // return this.http.get(`https://data.cityofnewyork.us/resource/uyz2-yxi9.json?$q=`+results);
         return this.http.get(`https://data.cityofnewyork.us/resource/uyz2-yxi9.json?$q=`+results)
                .toPromise()
@@ -40,5 +40,5 @@ export class RetailService {
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
-      }
+    }
 }

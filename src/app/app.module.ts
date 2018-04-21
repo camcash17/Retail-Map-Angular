@@ -12,6 +12,7 @@ import { RouteComponent } from './route/route.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RetailService } from './retail.service';
+import { FavoriteService } from './favorite.service';
 import { AgmCoreModule } from '@agm/core';
 import { HomeComponent } from './home/home.component';
 
@@ -50,7 +51,8 @@ import { HomeComponent } from './home/home.component';
     ])
   ],
   providers: [
-    RetailService
+    RetailService,
+    FavoriteService
   ],
   bootstrap: [AppComponent]
 })

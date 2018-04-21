@@ -1,3 +1,22 @@
 <div id="three">
-  <h2 className="header" style="margin: 0; padding: '10px'; color: 'white'; fontSize: '33px';">Favorites</h2>
+  <h2 class="header" style="margin: 0; padding: '10px'; color: 'white'; font-size: '33px';">Favorites</h2>
 </div>
+<hr>
+<section *ngIf="favs">
+  <div *ngFor="let f of favs; let i = index trackBy:trackByIndex">
+    <div>
+      <form>
+        <input 
+          type="text" 
+          [(ngModel)]="f.orgName" 
+          name="orgName"
+          class="form-control"
+          (ngModelChange)="handleFavoriteChange($event, i)"
+          (blur)="updateFavorite(i)"
+          name="orgName" />
+      </form>
+    </div>
+    <p (click)='onDelete(f.id)'>Delete</p>
+    <hr>
+  </div>
+</section>

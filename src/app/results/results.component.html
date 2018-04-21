@@ -1,6 +1,13 @@
 <div id="one">
-  <h2 className="header" style="margin: 0; padding: '10px'; color: 'white'; fontSize: '33px';">Retail Locations</h2>
+  <h2 class="header" style="margin: 0; padding: '10px'; color: 'white'; font-size: '33px';">Retail Locations</h2>
 </div>
+<hr>
+<!-- <br> -->
 <section *ngIf="item">
-  <p *ngFor="let r of item">{{r.cnbio_org_name}}<p>
+  <div *ngFor="let r of newItem">
+    <h3>{{r.cnbio_org_name}}</h3>
+    <!-- <p>Favorite</p> -->
+    <p><span style="color: yellow; background-color: black" class="glyphicon glyphicon-star" (click)='onFavorite(r)'></span></p>
+    <hr>
+  </div>
 </section>

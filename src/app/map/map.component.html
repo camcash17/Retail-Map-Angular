@@ -1,7 +1,14 @@
 <div id="two">
   <agm-map [latitude]="40.7078" [longitude]="-74.0100" [zoom]="zoom">
-    <agm-marker *ngFor="let m of coords" [latitude]="m.lat" [longitude]="m.lng">
-        <agm-info-window>{{m.name}}</agm-info-window>
-    </agm-marker>
+    <div *ngIf="mapData">
+      <agm-marker *ngFor="let m of newCoords" [latitude]="m.lat" [longitude]="m.lng">
+          <agm-info-window>{{m.name}}</agm-info-window>
+      </agm-marker>
+    </div>
+    <div *ngIf="!mapData">
+        <agm-marker *ngFor="let m of favCoords" [latitude]="m.lat" [longitude]="m.lng">
+            <agm-info-window>{{m.name}}</agm-info-window>
+        </agm-marker>
+      </div>
   </agm-map>
 </div>
