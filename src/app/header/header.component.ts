@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   viewFavorites() {
-    $('#selectId').val('undefined')
+    $('#selectId').val('0')
     // document.getElementById('selectId').value = "undefined";
     this.searchSubject.next(null);
     this.retailService.saveData(null);
