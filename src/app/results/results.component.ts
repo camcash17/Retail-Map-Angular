@@ -66,6 +66,7 @@ export class ResultsComponent implements OnInit {
   }
 
   onFavorite(event) {
+    this.favoriteService.saveFavData(null);
     this.newFav = {
       orgName: event.cnbio_org_name, 
       primaryName: event.primary,
